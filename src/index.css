@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Override for elements that need padding */
+  button,
+  input,
+  select,
+  textarea {
+    padding: revert;
+  }
+  
+  html {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #F5F1E8 0%, #FAF7F0 50%, #F0E9DC 100%);
+    background-attachment: fixed;
+    color: #3D2E1F;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', 'Shalimar', serif;
+    color: #3D2E1F;
+    font-weight: 400;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  ::selection {
+    background: #C4A57B;
+    color: #3D2E1F;
+  }
+
+  ::-moz-selection {
+    background: #C4A57B;
+    color: #3D2E1F;
+  }
+
+  a, button {
+    transition: all 0.3s ease;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #C4A57B;
+    outline-offset: 2px;
+  }
+
+  a:focus:not(:focus-visible),
+  button:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body, html, #root {
+    max-width: 100vw;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, #F5F1E8 0%, #FAF7F0 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #C4A57B 0%, #D4A574 50%, #C4A57B 100%);
+  border-radius: 10px;
+  border: 2px solid #F5F1E8;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8B6F47 0%, #C4A57B 50%, #8B6F47 100%);
+  border-color: #FAF7F0;
+  box-shadow: 0 0 10px rgba(196, 165, 123, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #8B6F47;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #C4A57B #F5F1E8;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile Input Fix */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Utilities */
+button,
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.loading {
+  cursor: wait;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.page-transition {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(61, 46, 31, 0.5);
+  border: 1px solid rgba(196, 165, 123, 0.3);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
