@@ -17,10 +17,10 @@ const Portfolio = () => {
   const [stars, setStars] = useState([])
 
   useEffect(() => {
-    // Generate star field
+    // Generate star field (reduced to 50 for better performance)
     const generateStars = () => {
       const newStars = []
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 50; i++) {
         newStars.push({
           id: i,
           x: Math.random() * 100,
@@ -86,10 +86,11 @@ const Portfolio = () => {
       id="portfolio" 
       className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-[#F5F1E8] via-[#FAF7F0] to-[#F0E9DC] overflow-hidden" 
       ref={ref}
+      style={{ willChange: 'scroll-position' }}
     >
-      {/* Interstellar Star Field Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Stars */}
+      {/* Interstellar Star Field Background - Optimized */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ willChange: 'transform' }}>
+        {/* Stars - Reduced count */}
         {stars.map((star) => (
           <motion.div
             key={star.id}
@@ -99,7 +100,8 @@ const Portfolio = () => {
               top: `${star.y}%`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              boxShadow: `0 0 ${star.size * 2}px rgba(196, 165, 123, 0.5)`
+              boxShadow: `0 0 ${star.size * 2}px rgba(196, 165, 123, 0.5)`,
+              willChange: 'opacity, transform'
             }}
             animate={{
               opacity: [star.opacity, star.opacity * 0.3, star.opacity],
@@ -114,15 +116,16 @@ const Portfolio = () => {
           />
         ))}
 
-        {/* Shooting Stars */}
-        {[...Array(3)].map((_, i) => (
+        {/* Shooting Stars - Reduced to 2 */}
+        {[...Array(2)].map((_, i) => (
           <motion.div
             key={`shooting-${i}`}
             className="absolute h-[2px] w-[100px] bg-gradient-to-r from-transparent via-[#C4A57B] to-transparent"
             style={{
-              top: `${20 + i * 30}%`,
+              top: `${20 + i * 40}%`,
               left: '-100px',
-              transform: 'rotate(-45deg)'
+              transform: 'rotate(-45deg)',
+              willChange: 'transform, opacity'
             }}
             animate={{
               x: ['0vw', '120vw'],
@@ -131,13 +134,13 @@ const Portfolio = () => {
             transition={{
               duration: 3,
               repeat: Infinity,
-              delay: i * 4,
+              delay: i * 5,
               ease: 'easeOut'
             }}
           />
         ))}
 
-        {/* Nebula-like Clouds */}
+        {/* Nebula-like Clouds - Optimized */}
         <motion.div
           animate={{
             x: [0, 50, 0],
@@ -152,7 +155,8 @@ const Portfolio = () => {
           className="absolute top-10 right-10 w-[500px] h-[500px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(196, 165, 123, 0.15) 0%, rgba(212, 165, 116, 0.08) 40%, transparent 70%)',
-            filter: 'blur(60px)'
+            filter: 'blur(60px)',
+            willChange: 'transform'
           }}
         />
 
@@ -171,11 +175,12 @@ const Portfolio = () => {
           className="absolute bottom-10 left-10 w-[600px] h-[600px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(139, 111, 71, 0.12) 0%, rgba(196, 165, 123, 0.06) 40%, transparent 70%)',
-            filter: 'blur(80px)'
+            filter: 'blur(80px)',
+            willChange: 'transform'
           }}
         />
 
-        {/* Constellation Lines */}
+        {/* Constellation Lines - Simplified */}
         <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
             <linearGradient id="constellationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -193,14 +198,6 @@ const Portfolio = () => {
             transition={{ duration: 2, delay: 0.5 }}
           />
           <motion.line
-            x1="30%" y1="35%" x2="50%" y2="25%"
-            stroke="url(#constellationGrad)"
-            strokeWidth="1"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 0.7 }}
-          />
-          <motion.line
             x1="70%" y1="60%" x2="85%" y2="70%"
             stroke="url(#constellationGrad)"
             strokeWidth="1"
@@ -208,17 +205,9 @@ const Portfolio = () => {
             animate={{ pathLength: 1 }}
             transition={{ duration: 2, delay: 1 }}
           />
-          <motion.line
-            x1="20%" y1="75%" x2="45%" y2="80%"
-            stroke="url(#constellationGrad)"
-            strokeWidth="1"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 1.2 }}
-          />
         </svg>
 
-        {/* Distant Planets/Orbs */}
+        {/* Distant Planets/Orbs - Reduced animation complexity */}
         <motion.div
           animate={{
             y: [0, -20, 0],
@@ -232,24 +221,8 @@ const Portfolio = () => {
           className="absolute top-1/4 right-1/4 w-12 h-12 rounded-full border-2 border-[#C4A57B]/30"
           style={{
             background: 'radial-gradient(circle at 30% 30%, rgba(212, 165, 116, 0.2), rgba(139, 111, 71, 0.1))',
-            boxShadow: '0 0 30px rgba(196, 165, 123, 0.3)'
-          }}
-        />
-
-        <motion.div
-          animate={{
-            y: [0, 30, 0],
-            rotate: [360, 0]
-          }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: 'linear'
-          }}
-          className="absolute bottom-1/3 left-1/5 w-8 h-8 rounded-full border border-[#8B6F47]/30"
-          style={{
-            background: 'radial-gradient(circle at 40% 40%, rgba(196, 165, 123, 0.15), rgba(139, 111, 71, 0.08))',
-            boxShadow: '0 0 20px rgba(139, 111, 71, 0.2)'
+            boxShadow: '0 0 30px rgba(196, 165, 123, 0.3)',
+            willChange: 'transform'
           }}
         />
       </div>
@@ -274,7 +247,7 @@ const Portfolio = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid - Optimized */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -285,13 +258,16 @@ const Portfolio = () => {
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
               className="group cursor-pointer"
+              style={{ willChange: 'transform' }}
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-lg">
-                {/* Project Image */}
+                {/* Project Image - Optimized */}
                 <img 
                   src={project.image} 
                   alt={project.title}
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  style={{ willChange: 'transform' }}
                 />
                 
                 {/* Gradient Overlay */}
