@@ -3,12 +3,12 @@ import { motion, useInView } from 'framer-motion'
 import { HiArrowRight } from 'react-icons/hi'
 
 // Import project images
-import loftImg from '../../public/images/loft.jpeg'
-import officeImg from '../../public/images/office.jpeg'
-import penthouseImg from '../../public/images/penthouse.jpeg'
-import restaurantImg from '../../public/images/restaurant.jpeg'
-import spaImg from '../../public/images/spa.jpeg'
-import galleryImg from '../../public/images/gallery.jpeg'
+import loftImg from '/images/loft.jpeg'
+import officeImg from '/images/office.jpeg'
+import penthouseImg from '/images/penthouse.jpeg'
+import restaurantImg from '/images/restaurant.jpeg'
+import spaImg from '/images/spa.jpeg'
+import galleryImg from '/images/gallery.jpeg'
 
 const Portfolio = () => {
   const ref = useRef(null)

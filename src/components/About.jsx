@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { HiSparkles, HiLightBulb, HiTrendingUp } from 'react-icons/hi'
-import storyImage from '../../public/images/storyImage.jpeg'
-import philosophyImage from '../../public/images/philosophyImage.jpeg'
-import impactImage from '../../public/images/impactImage.jpeg'
+import storyImage from '/images/storyImage.jpeg'
+import philosophyImage from '/images/philosophyImage.jpeg'
+import impactImage from '/images/impactImage.jpeg'
 
 const imagesMap = {
   story: storyImage,

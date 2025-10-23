@@ -3,12 +3,12 @@ import { HiHome, HiBriefcase, HiSparkles, HiCube, HiLightningBolt, HiArrowRight 
 import { useState } from 'react'
 
 // Import service images
-import residentialImg from '../../public/images/residentialImg.jpeg'
-import commercialImg from '../../public/images/commercialImg.jpeg'
-import hospitalityImg from '../../public/images/hospitalityImg.jpeg'
-import spacePlanningImg from '../../public/images/spacePlanningImg.jpeg'
-import furnitureImg from '../../public/images/furnitureImg.jpeg'
-import renovationImg from '../../public/images/renovationImg.jpeg'
+import residentialImg from '/images/residentialImg.jpeg'
+import commercialImg from '/images/commercialImg.jpeg'
+import hospitalityImg from '/images/hospitalityImg.jpeg'
+import spacePlanningImg from '/images/spacePlanningImg.jpeg'
+import furnitureImg from '/images/furnitureImg.jpeg'
+import renovationImg from '/images/renovationImg.jpeg'
 
 // Map service ids to images
 const serviceImages = {
