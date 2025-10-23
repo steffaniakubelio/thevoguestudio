@@ -65,7 +65,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="relative h-[350px] lg:h-[450px] rounded-2xl bg-gradient-to-br from-white/60 to-white/30 backdrop-blur-xl border border-[#C4A57B]/20 shadow-xl overflow-hidden flex items-center justify-center"
-            style={{ perspective: '800px' }}
+            style={{ perspective: '1000px' }}
           >
             <div className="mail-container relative w-[220px] h-[160px]">
               {/* Envelope back */}
