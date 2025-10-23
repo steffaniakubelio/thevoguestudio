@@ -273,26 +273,6 @@ const Portfolio = () => {
                 {/* Gradient Overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 mix-blend-multiply`} />
 
-                {/* Hover Overlay */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 bg-[#3D2E1F]/60 backdrop-blur-sm flex items-center justify-center"
-                >
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={hoveredIndex === index ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-white text-center"
-                  >
-                    <div className="flex items-center gap-2 justify-center text-sm font-semibold">
-                      <span>View Project</span>
-                      <HiArrowRight />
-                    </div>
-                  </motion.div>
-                </motion.div>
-
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm text-[#8B6F47] text-xs font-bold shadow-lg">

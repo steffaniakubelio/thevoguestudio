@@ -34,13 +34,12 @@ const Contact = () => {
       ref={ref}
       style={{ willChange: 'transform, opacity' }}
     >
-      {/* Background Orb - Optimized */}
+      {/* Background Orb */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           animate={{
             x: [0, 100, 0],
             y: [0, 50, 0],
-            rotate: [0, 5, -5, 0],
             opacity: [0.3, 0.5, 0.3],
           }}
           transition={{
@@ -59,94 +58,87 @@ const Contact = () => {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
-          {/* Enhanced SVG Animation */}
+          {/* Animated Mail Envelope */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: 'easeOut' }}
             className="relative h-[350px] lg:h-[450px] rounded-2xl bg-gradient-to-br from-white/60 to-white/30 backdrop-blur-xl border border-[#C4A57B]/20 shadow-xl overflow-hidden flex items-center justify-center"
-            style={{ willChange: 'transform, opacity' }}
+            style={{ perspective: '800px' }}
           >
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 400 400"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="gradBase" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#C4A57B" />
-                  <stop offset="100%" stopColor="#D4A574" />
-                </linearGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
+            <div className="mail-container relative w-[220px] h-[160px]">
+              {/* Envelope back */}
+              <div className="envelope-back absolute inset-0 rounded-lg bg-gradient-to-br from-[#C4A57B] to-[#D4A574] shadow-lg" />
 
-              {[80, 100, 120].map((r, i) => (
-                <motion.circle
-                  key={i}
-                  cx="200"
-                  cy="200"
-                  r={r}
-                  fill="none"
-                  stroke="url(#gradBase)"
-                  strokeWidth="1.5"
-                  filter="url(#glow)"
-                  opacity="0.6"
-                  animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-                  transition={{
-                    duration: 20 + i * 5,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  }}
-                  style={{ transformOrigin: '200px 200px' }}
-                />
-              ))}
-
-              <motion.circle
-                cx="200"
-                cy="200"
-                r="20"
-                fill="url(#gradBase)"
-                filter="url(#glow)"
+              {/* Envelope front */}
+              <div className="envelope-front absolute bottom-0 left-0 w-full h-1/2 rounded-b-lg bg-gradient-to-br from-[#D4A574] to-[#C4A57B] shadow-inner z-10" />
+              
+              {/* Envelope flap */}
+              <motion.div
+                className="envelope-flap absolute top-0 left-0 w-full h-1/2 rounded-t-lg bg-gradient-to-br from-[#8B6F47] to-[#C4A57B] shadow-md z-20 origin-bottom"
                 animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.7, 1, 0.7],
+                  rotateX: [0, -180, 0]
                 }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  repeatDelay: 1
+                }}
               />
 
-              {[...Array(6)].map((_, i) => {
-                const angle = (i / 6) * Math.PI * 2;
-                const radius = 100;
-                return (
-                  <motion.circle
-                    key={i}
-                    cx={200 + Math.cos(angle) * radius}
-                    cy={200 + Math.sin(angle) * radius}
-                    r="5"
-                    fill="url(#gradBase)"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.5, 1, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      delay: i * 0.3,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    style={{ willChange: 'transform, opacity' }}
-                  />
-                )
-              })}
-            </svg>
+              {/* Letter */}
+              <motion.div
+                className="letter absolute left-1/2 top-1/2 w-[85%] h-[75%] bg-[#FAF7F0] rounded-md shadow-md p-4 z-15 -translate-x-1/2 -translate-y-1/2 ring-1 ring-[#D4A574]"
+                animate={{
+                  y: [0, -60, 0]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  repeatDelay: 1,
+                  delay: 0.5
+                }}
+              >
+                <div className="letter-text flex flex-col gap-2">
+                  <div className="line h-3 rounded bg-gradient-to-r from-[#C4A57B] to-[#D4A574]" />
+                  <div className="line h-3 rounded bg-gradient-to-r from-[#C4A57B] to-[#D4A574]" style={{ width: '60%' }} />
+                  <div className="line h-3 rounded bg-gradient-to-r from-[#C4A57B] to-[#D4A574]" />
+                  <div className="line h-3 rounded bg-gradient-to-r from-[#C4A57B] to-[#D4A574]" style={{ width: '60%' }} />
+                  <div className="line h-3 rounded bg-gradient-to-r from-[#C4A57B] to-[#D4A574]" />
+                </div>
+              </motion.div>
 
+              {/* Floating particles */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute rounded-full bg-gradient-to-r from-[#C4A57B] to-[#D4A574] shadow-md"
+                  style={{
+                    width: '8px',
+                    height: '8px',
+                    left: `${15 + i * 12}%`,
+                    top: `${30 + (i % 3) * 15}%`,
+                    boxShadow: '0 0 10px rgba(196, 165, 123, 0.5)'
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                    ease: 'easeInOut'
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Glow behind envelope */}
             <motion.div
               animate={{
                 opacity: [0.2, 0.4, 0.2],
@@ -157,11 +149,11 @@ const Contact = () => {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="absolute inset-0 bg-gradient-to-br from-[#C4A57B]/20 via-transparent to-[#D4A574]/20 rounded-2xl blur-3xl"
+              className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#C4A57B]/20 via-transparent to-[#D4A574]/20 blur-3xl -z-10"
             />
           </motion.div>
 
-          {/* Contact Form - Smooth Transition */}
+          {/* Contact form */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -200,17 +192,30 @@ const Contact = () => {
             </div>
 
             <form className="space-y-3 mb-6">
-              {["Your Name", "Your Email"].map((placeholder, idx) => (
+              <div className="grid sm:grid-cols-2 gap-3">
                 <motion.input
-                  key={idx}
                   whileFocus={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
-                  type={placeholder === "Your Email" ? "email" : "text"}
-                  placeholder={placeholder}
+                  type="text"
+                  placeholder="Your Name"
                   className="w-full bg-white/70 backdrop-blur-xl border border-[#C4A57B]/20 rounded-xl px-4 py-2.5 text-sm text-[#3D2E1F] placeholder-[#5D4E3C]/50 focus:border-[#C4A57B] focus:ring-2 focus:ring-[#C4A57B]/20 focus:outline-none transition-all duration-200 shadow-md"
-                  style={{ willChange: 'transform' }}
                 />
-              ))}
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full bg-white/70 backdrop-blur-xl border border-[#C4A57B]/20 rounded-xl px-4 py-2.5 text-sm text-[#3D2E1F] placeholder-[#5D4E3C]/50 focus:border-[#C4A57B] focus:ring-2 focus:ring-[#C4A57B]/20 focus:outline-none transition-all duration-200 shadow-md"
+                />
+              </div>
+
+              <motion.input
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                type="text"
+                placeholder="Subject"
+                className="w-full bg-white/70 backdrop-blur-xl border border-[#C4A57B]/20 rounded-xl px-4 py-2.5 text-sm text-[#3D2E1F] placeholder-[#5D4E3C]/50 focus:border-[#C4A57B] focus:ring-2 focus:ring-[#C4A57B]/20 focus:outline-none transition-all duration-200 shadow-md"
+              />
 
               <motion.textarea
                 whileFocus={{ scale: 1.02 }}
@@ -218,7 +223,6 @@ const Contact = () => {
                 placeholder="Tell us about your project..."
                 rows="3"
                 className="w-full bg-white/70 backdrop-blur-xl border border-[#C4A57B]/20 rounded-xl px-4 py-2.5 text-sm text-[#3D2E1F] placeholder-[#5D4E3C]/50 focus:border-[#C4A57B] focus:ring-2 focus:ring-[#C4A57B]/20 focus:outline-none transition-all duration-200 resize-none shadow-md"
-                style={{ willChange: 'transform' }}
               />
 
               <motion.button
@@ -226,15 +230,14 @@ const Contact = () => {
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.25 }}
                 type="submit"
-                className="w-full sm:w-auto bg-gradient-to-r from-[#C4A57B] to-[#D4A574] text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-xl transition-transform duration-300 flex items-center justify-center gap-2 group"
-                style={{ willChange: 'transform' }}
+                className="w-full sm:w-auto bg-gradient-to-r from-[#C4A57B] to-[#D4A574] text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
               >
                 <span>Send Message</span>
                 <HiArrowRight className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
               </motion.button>
             </form>
 
-            {/* Contact Info Lines */}
+            {/* Contact Info */}
             <div className="space-y-3 pt-4 border-t border-[#C4A57B]/10">
               {contactInfo.map((info, index) => (
                 <motion.a
@@ -244,7 +247,6 @@ const Contact = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
                   className="flex items-center gap-3 group cursor-pointer"
-                  style={{ willChange: 'transform, opacity' }}
                 >
                   <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#C4A57B]/10 to-[#D4A574]/10 border border-[#C4A57B]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <info.icon className="text-[#C4A57B] text-base" />
@@ -263,6 +265,27 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* CSS for envelope */}
+      <style jsx>{`
+        .mail-container {
+          perspective: 800px;
+        }
+        .envelope-back,
+        .envelope-front,
+        .envelope-flap,
+        .letter {
+          backface-visibility: hidden;
+          will-change: transform, opacity;
+        }
+        .envelope-flap {
+          transform-style: preserve-3d;
+          box-shadow: 0 4px 12px rgba(139, 111, 71, 0.4);
+        }
+        .letter-text .line {
+          transition: width 0.3s ease;
+        }
+      `}</style>
     </section>
   )
 }
