@@ -23,7 +23,7 @@ const About = () => {
       stats: [
         { label: 'Founded', value: '2025' },
         { label: 'Team', value: '50+' },
-        { label: 'Projects', value: '500+' }
+        { label: 'Projects', value: '200+' }
       ],
       image: 'story'
     },
