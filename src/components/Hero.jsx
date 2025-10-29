@@ -2,6 +2,12 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 const Hero = () => {
   const { scrollYProgress } = useScroll()
+
+  // Animate top offset from 32px to 16px (top-8 to top-4)
+  const logoTop = useTransform(scrollYProgress, [0, 0.15], [32, 16]) // px values
+
+  // Optionally you can animate opacity or scale as well
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0.9])
   
   const theVogueY = useTransform(scrollYProgress, [0, 0.6], [0, -400])
   const theVogueX = useTransform(scrollYProgress, [0, 0.6], [0, -150])
@@ -23,6 +29,18 @@ const Hero = () => {
         minHeight: 'calc(100svh - 4rem)',
       }}
     >
+      <motion.img
+        src="/voguelogo.png"
+        alt="Vogue Studio Logo"
+        className="fixed hidden sm:block left-30 w-20 h-15 sm:w-24 sm:h-18 md:w-22 md:h-18 z-50 select-none"
+        style={{
+          top: logoTop,
+          opacity: logoOpacity,
+          userSelect: 'none',
+          // For smooth GPU animation
+          willChange: 'top, opacity',
+        }}
+      />
       <style jsx>{`
         @media (min-width: 640px) {
           #home {
@@ -32,6 +50,14 @@ const Hero = () => {
           }
         }
       `}</style>
+
+       {/* <img
+        src="/voguelogo.png"
+        alt="Vogue Studio Logo"
+        className="fixed top-4 left-15 w-20 h-15 sm:w-24 sm:h-20 md:w-25 md:h-20 z-50 select-none"
+        style={{ userSelect: 'none' }}
+      /> */}
+
 
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
       
